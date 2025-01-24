@@ -61,6 +61,7 @@ namespace WebUygulamaProje1.Controllers
             return View();
 
         }
+        //GET ACTİON
         public IActionResult Sil (int? id)
         {
             if (id == null || id == 0)
@@ -73,6 +74,22 @@ namespace WebUygulamaProje1.Controllers
                 return NotFound();
             }
             return View(kitapTuruVt);
+        }
+
+        //POST ACTION
+        [HttpPost, ActionName("Sil")]
+        public IActionResult SilPOST(int? id)
+        {
+
+           KitapTuru? kitapTuru = _uygulamaDbContext.KitapTurleri.Find(id);
+            if (kitapTuru == null)
+            {
+                return NotFound();
+            }
+            _uygulamaDbContext.KitapTurleri.Remove(kitapTuru);
+            _uygulamaDbContext.SaveChanges();
+            return RedirectToAction("Index", "KitapTuru");
+
         }
     }
 }
