@@ -8,8 +8,9 @@
         </div>
 
         <div class="mb-3">
-            <label>Kitap Türü Adı:</label>
-            <input type="text" class="form-control"/>
+            <label asp-for="Ad" class="p-0"></label>
+            <input asp-for="Ad" class="form-control"/>
+            <span asp-validation-for="Ad" class="tesxt-danger"></span>
             </div>
             <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Kitap Türü Ekle</button>
     <a asp-controller="KitapTuru" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
@@ -18,3 +19,4 @@
 
     </div>
 </form>
+

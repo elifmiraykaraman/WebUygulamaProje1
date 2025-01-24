@@ -17,6 +17,11 @@
               <th>
                   Kitap Türü
               </th>
+                <th>
+                </th>
+                <th>
+                </th>
+
           </tr>
          </thead>
 
@@ -25,7 +30,12 @@
              <tr>
                  <td>@kitapTuru.Id</td>
                  <td>@kitapTuru.Ad</td>
-
+                 <td>
+                 <a asp-controller="KitapTuru" asp-action="Guncelle" asp-route-id="@kitapTuru.Id" type="button" classs="btn btn-primary" style="width:150px">Güncelle</a>
+                 </td>
+                 <td>
+                 <a asp-controller="KitapTuru" asp-action="Sil" type="button" classs="btn btn-danger" style="width:150px">Sil</a>
+                 </td>
              </tr>
             }
          </tbody>
