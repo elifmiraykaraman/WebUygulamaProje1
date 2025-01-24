@@ -29,8 +29,8 @@ namespace WebUygulamaProje1.Controllers
             {
                 _kitapRepository.Ekle(kitap);
                 _kitapRepository.Kaydet();  //SaveChanges yapmazsanız bilgiler veri tabanına eklenmez!
-                TempData["basarili"] = "Yeni Kitap Türü Başarıyla Oluşturuldu!";
-                return RedirectToAction("Index", "KitapTuru");
+                TempData["basarili"] = "Yeni Kitap Başarıyla Oluşturuldu!";
+                return RedirectToAction("Index", "Kitap");
             }
             return View();
 
