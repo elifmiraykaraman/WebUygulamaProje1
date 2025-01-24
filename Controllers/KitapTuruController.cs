@@ -61,5 +61,18 @@ namespace WebUygulamaProje1.Controllers
             return View();
 
         }
+        public IActionResult Sil (int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            KitapTuru? kitapTuruVt = _uygulamaDbContext.KitapTurleri.Find(id);
+            if (kitapTuruVt == null)
+            {
+                return NotFound();
+            }
+            return View(kitapTuruVt);
+        }
     }
 }
