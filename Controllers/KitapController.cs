@@ -62,11 +62,14 @@ namespace WebUygulamaProje1.Controllers
                 string wwwRootPath = _webHostEnviroment.WebRootPath ;
                 string kitapPath = Path.Combine(wwwRootPath, @"img");
 
-                using (var fileStream = new FileStream(Path.Combine(kitapPath, file.FileName), FileMode.Create))
+                if (file != null)
                 {
-                    file.CopyTo(fileStream);
+                    using (var fileStream = new FileStream(Path.Combine(kitapPath, file.FileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    kitap.ResimUrl = @"\img\" + file.FileName;
                 }
-                kitap.ResimUrl = @"\img\" + file.FileName;
 
                 if (kitap.Id == 0)
                 {
