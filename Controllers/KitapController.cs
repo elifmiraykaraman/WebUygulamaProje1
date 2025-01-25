@@ -19,7 +19,9 @@ namespace WebUygulamaProje1.Controllers
         }
         public IActionResult Index()
         {
-            List<Kitap> objKitapList = _kitapRepository.GetAll().ToList();
+           //List<Kitap> objKitapList = _kitapRepository.GetAll().ToList();
+
+            List<Kitap> objKitapList = _kitapRepository.GetAll(includeProps:"KitapTuru").ToList();
             return View(objKitapList);
         }
 
