@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebUygulamaProje1.Models;
 using WebUygulamaProje1.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +10,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<WebUygulamaProje1.Utility.UygulamaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//_kitapTuruRepository  nesnesş => Dependency Injection
+//_kitapTuruRepository  nesnesi => Dependency Injection
 builder.Services.AddScoped<WebUygulamaProje1.Models.IKitapTuruRepository, WebUygulamaProje1.Models.KitapTuruRepository>();
+
+//
+builder.Services.AddScoped<IKitapRepository, KitapRepository>();
+
+
 
 var app = builder.Build();
 

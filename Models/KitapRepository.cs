@@ -4,7 +4,7 @@ using WebUygulamaProje1.Utility;
 
 namespace WebUygulamaProje1.Models
 {
-    public class KitapRepository : Repository<Kitap> //IKitapRepository
+    public class KitapRepository : Repository<Kitap>, IKitapRepository
     {
         private UygulamaDbContext _uygulamaDbContext;
         public KitapRepository(UygulamaDbContext uygulamaDbContext) : base(uygulamaDbContext)
@@ -12,10 +12,11 @@ namespace WebUygulamaProje1.Models
             _uygulamaDbContext = uygulamaDbContext;
         }
 
-        public void Guncelle(KitapTuru kitap)
+        public void Guncelle(Kitap kitap)
         {
             _uygulamaDbContext.Update(kitap);
         }
+
         public void Kaydet()
         {
             _uygulamaDbContext.SaveChanges();
