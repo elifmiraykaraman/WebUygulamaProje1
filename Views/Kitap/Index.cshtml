@@ -58,7 +58,7 @@
 
 
                  <td>
-                 <a asp-controller="Kitap" asp-action="Guncelle" asp-route-id="@kitap.Id" type="button" classs="btn btn-primary" style="width:150px">Güncelle</a>
+                 <a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@kitap.Id" type="button" classs="btn btn-primary" style="width:150px">Güncelle</a>
                  </td>
                  <td>
                         <a asp-controller="Kitap" asp-action="Sil" asp-route-id="@kitap.Id" type="button" classs="btn btn-danger" style="width:150px">Sil</a>
@@ -71,7 +71,7 @@
 
     <div class="row" pt-3 pb-2>
         <div>
-            <a asp-controller="Kitap" asp-action="Ekle" class="btn btn-lg btn primary" type="button">
+            <a asp-controller="Kitap" asp-action="EkleGuncelle" class="btn btn-lg btn primary" type="button">
                 Yeni Kitap Oluştur
             
             </a>

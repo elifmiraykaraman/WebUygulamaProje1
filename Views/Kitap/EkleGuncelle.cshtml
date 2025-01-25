@@ -1,9 +1,9 @@
 ﻿@model Kitap
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="bırder p-3 mt-5">
         <div class="row pb-3">  
-        <h2 class="tesxt-primary"> Kitap Ekle</h2>
+        <h2 class="tesxt-primary">@(Model.Id==0? "Kitap Ekle" :"Kitap Güncelle")</h2>
         </hr>
         </div>
 
@@ -38,9 +38,20 @@
             <span asp-validation-for="Fiyat" class="tesxt-danger"></span>
         </div>
 
+        <div class="mb-3">
+            <label asp-for="ResimUrl" class="p-0"></label>
+            <input type="file" class="form-control"/>
+        </div>
 
-
+        @if(Model.Id != 0 )
+        {
+            <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Güncelle</button>
+        }
+        else
+        {
             <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Kitap Ekle</button>
+
+        }
     <a asp-controller="Kitap" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
         Kitaplara Geri Dön
     </a>

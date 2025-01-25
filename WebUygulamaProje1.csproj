@@ -19,11 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Kitap\Ekle.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Views\Kitap\Guncelle.cshtml">
+    <Content Update="Views\Kitap\EkleGuncelle.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
