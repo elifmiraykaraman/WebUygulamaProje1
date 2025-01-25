@@ -23,6 +23,8 @@ namespace WebUygulamaProje1.Models
         public int KitapTuruId { get; set; }
         [ForeignKey("KitapTuruId")]
         public KitapTuru KitapTuru { get; set; }
+        
+        public string ResimUrl { get; set; }
 
     }
 }
