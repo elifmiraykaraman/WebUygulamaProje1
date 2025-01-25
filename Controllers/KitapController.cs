@@ -9,11 +9,13 @@ namespace WebUygulamaProje1.Controllers
     {
         private readonly IKitapRepository _kitapRepository;
         private readonly IKitapTuruRepository _kitapTuruRepository;
+        public readonly IWebHostEnvironment _webHostEnviroment;
 
-        public KitapController(IKitapRepository kitapRepository, IKitapTuruRepository kitapTuruRepository)
+        public KitapController(IKitapRepository kitapRepository, IKitapTuruRepository kitapTuruRepository, IWebHostEnvironment webHostEnviroment)
         {
             _kitapRepository = kitapRepository;
             _kitapTuruRepository = kitapTuruRepository;
+            _webHostEnviroment = webHostEnviroment;
         }
         public IActionResult Index()
         {
@@ -51,9 +53,22 @@ namespace WebUygulamaProje1.Controllers
         [HttpPost]
         public IActionResult EkleGuncelle(Kitap kitap, IFormFile? file)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {
+                //var errors = ModelState.Values.SelectMany(x => x.Errors);
+
+                string wwwRootPath = _webHostEnviroment.WebRootPath ;
+                string kitapPath = Path.Combine(wwwRootPath, @"img");
+
+                using (var fileStream = new FileStream(Path.Combine(kitapPath, file.FileName), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                kitap.ResimUrl = @"\img\" + file.FileName;
+
+
                 _kitapRepository.Ekle(kitap);
                 _kitapRepository.Kaydet();  //SaveChanges yapmazsanız bilgiler veri tabanına eklenmez!
                 TempData["basarili"] = "Yeni Kitap Başarıyla Oluşturuldu!";

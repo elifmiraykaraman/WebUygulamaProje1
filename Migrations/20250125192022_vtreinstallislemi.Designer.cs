@@ -11,8 +11,8 @@ using WebUygulamaProje1.Utility;
 namespace WebUygulamaProje1.Migrations
 {
     [DbContext(typeof(UygulamaDbContext))]
-    [Migration("20250124212130_KitaplarTablosuEkle")]
-    partial class KitaplarTablosuEkle
+    [Migration("20250125192022_vtreinstallislemi")]
+    partial class vtreinstallislemi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,13 @@ namespace WebUygulamaProje1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("KitapTuruId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ResimUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Tanim")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -48,6 +55,8 @@ namespace WebUygulamaProje1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("KitapTuruId");
 
                     b.ToTable("Kitaplar");
                 });
@@ -68,6 +77,17 @@ namespace WebUygulamaProje1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("KitapTurleri");
+                });
+
+            modelBuilder.Entity("WebUygulamaProje1.Models.Kitap", b =>
+                {
+                    b.HasOne("WebUygulamaProje1.Models.KitapTuru", "KitapTuru")
+                        .WithMany()
+                        .HasForeignKey("KitapTuruId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("KitapTuru");
                 });
 #pragma warning restore 612, 618
         }

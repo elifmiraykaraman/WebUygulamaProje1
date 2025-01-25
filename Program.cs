@@ -2,6 +2,7 @@
 using WebUygulamaProje1.Models;
 using WebUygulamaProje1.Utility;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
