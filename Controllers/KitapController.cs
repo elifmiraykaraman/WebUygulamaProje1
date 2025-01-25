@@ -68,10 +68,20 @@ namespace WebUygulamaProje1.Controllers
                 }
                 kitap.ResimUrl = @"\img\" + file.FileName;
 
+                if (kitap.Id == 0)
+                {
+                    _kitapRepository.Ekle(kitap);
+                    TempData["basarili"] = "Yeni Kitap Başarıyla Oluşturuldu!";
 
-                _kitapRepository.Ekle(kitap);
+                }
+                else
+                {
+                    _kitapRepository.Guncelle(kitap);
+                    TempData["basarili"] = "Kitap Guncelleme Başarılı !";
+
+                }
+
                 _kitapRepository.Kaydet();  //SaveChanges yapmazsanız bilgiler veri tabanına eklenmez!
-                TempData["basarili"] = "Yeni Kitap Başarıyla Oluşturuldu!";
                 return RedirectToAction("Index", "Kitap");
             }
             return View();
