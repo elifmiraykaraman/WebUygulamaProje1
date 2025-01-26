@@ -14,6 +14,8 @@ builder.Services.AddDbContext<WebUygulamaProje1.Utility.UygulamaDbContext>(optio
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<UygulamaDbContext>();
 
+builder.Services.AddRazorPages();
+
 //DİKKAT: Yeni bir repository sınıfı Oluşturduğunuzda mutlaka burada Services'lere Eklemelisiniz.
 //_kitapTuruRepository  nesnesi => Dependency Injection
 builder.Services.AddScoped<IKitapTuruRepository,KitapTuruRepository>();
@@ -39,6 +41,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
