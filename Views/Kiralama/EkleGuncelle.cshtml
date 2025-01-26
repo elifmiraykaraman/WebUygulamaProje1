@@ -22,7 +22,7 @@
                     </select>
                 </div>
 
-                @if (Model.Id != 0)
+               @if(Model.Id != 0)
                 {
                     <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Güncelle</button>
                 }
@@ -30,7 +30,7 @@
                 {
                     <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Yeni Kiralama</button>
 
-                }
+                }   
                 <a asp-controller="Kiralama" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
                     Kiralamalara Geri Dön
                 </a>

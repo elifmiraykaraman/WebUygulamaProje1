@@ -11,11 +11,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<WebUygulamaProje1.Utility.UygulamaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//DİKKAT: Yeni bir repository sınıfı Oluşturduğunuzda mutlaka burada Services'lere Eklemelisiniz.
 //_kitapTuruRepository  nesnesi => Dependency Injection
-builder.Services.AddScoped<WebUygulamaProje1.Models.IKitapTuruRepository, WebUygulamaProje1.Models.KitapTuruRepository>();
-
-//
+builder.Services.AddScoped<IKitapTuruRepository,KitapTuruRepository>();
 builder.Services.AddScoped<IKitapRepository, KitapRepository>();
+builder.Services.AddScoped<IKiralamaRepository, KiralamaRepository>();
 
 
 

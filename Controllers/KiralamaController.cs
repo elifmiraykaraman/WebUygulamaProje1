@@ -35,7 +35,7 @@ namespace WebUygulamaProje1.Controllers
             if(id== null || id == 0)
             {
                 //ekle
-                return View();
+                return View(new Kiralama());
             }
      
             else
@@ -60,7 +60,6 @@ namespace WebUygulamaProje1.Controllers
                 {
                     _kiralamaRepository.Ekle(kiralama);
                     TempData["basarili"] = "Yeni Kiralama Kaydı Başarıyla Oluşturuldu!";
-
                 }
                 else
                 {
@@ -72,7 +71,7 @@ namespace WebUygulamaProje1.Controllers
                 _kiralamaRepository.Kaydet();  //SaveChanges yapmazsanız bilgiler veri tabanına eklenmez!
                 return RedirectToAction("Index", "Kiralama");
             }
-                return View();
+                return View(kiralama);
             
         }
 
