@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WebUygulamaProje1.Controllers
 {
-    [Authorize(Roles =UserRoles.Role_Admin)]
     public class KitapController : Controller
     {
         private readonly IKitapRepository _kitapRepository;
@@ -19,14 +18,16 @@ namespace WebUygulamaProje1.Controllers
             _kitapTuruRepository = kitapTuruRepository;
             _webHostEnviroment = webHostEnviroment;
         }
+        
+        [Authorize(Roles = "Admin,Ogrenci")]
         public IActionResult Index()
         {
-           //List<Kitap> objKitapList = _kitapRepository.GetAll().ToList();
-
             List<Kitap> objKitapList = _kitapRepository.GetAll(includeProps:"KitapTuru").ToList();
             return View(objKitapList);
         }
-
+        
+        
+        [Authorize(Roles = UserRoles.Role_Admin)]
         public IActionResult EkleGuncelle(int? id)
         {
             IEnumerable<SelectListItem> KitapTuruList = _kitapTuruRepository.GetAll().Select(k => new SelectListItem
@@ -55,6 +56,8 @@ namespace WebUygulamaProje1.Controllers
         }
         
         [HttpPost]
+        [Authorize(Roles = UserRoles.Role_Admin)]
+
         public IActionResult EkleGuncelle(Kitap kitap, IFormFile? file)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors);
@@ -94,38 +97,8 @@ namespace WebUygulamaProje1.Controllers
             return View();
 
         }
-/*
-    public IActionResult Guncelle(int? id)
-        {
-            if (id == null || id == 0) 
-            { 
-            return NotFound();
-            }
-            Kitap? kitapVt = _kitapRepository.Get(u=>u.Id==id);  //Expression<Func<T, bool>> filtre
-            if (kitapVt == null)
-            {
-                return NotFound();
-            }
-            return View();
-        }
-*/
-/*
-        [HttpPost]
-        public IActionResult Guncelle(Kitap kitap)
-        {
-
-            if (ModelState.IsValid)
-            {
-                _kitapRepository.Guncelle(kitap);
-                _kitapRepository.Kaydet();  //SaveChanges yapmazsanız bilgiler veri tabanına eklenmez!
-                TempData["basarili"] = "Kitap Başarıyla Güncellendi!";
-                return RedirectToAction("Index", "Kitap");
-            }
-            return View();
-
-        }
-*/
         //GET ACTİON
+        [Authorize(Roles = UserRoles.Role_Admin)]
         public IActionResult Sil (int? id)
         {
             if (id == null || id == 0)
@@ -142,6 +115,8 @@ namespace WebUygulamaProje1.Controllers
 
         //POST ACTION
         [HttpPost, ActionName("Sil")]
+        [Authorize(Roles = UserRoles.Role_Admin)]
+
         public IActionResult SilPOST(int? id)
         {
 
