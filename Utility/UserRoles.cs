@@ -1,6 +1,6 @@
 ﻿namespace WebUygulamaProje1.Utility
 {
-    public class UserRoles
+    public static class UserRoles
     {
         public const string Role_Admin = "Admin";
 
