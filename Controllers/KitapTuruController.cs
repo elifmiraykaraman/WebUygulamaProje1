@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebUygulamaProje1.Utility;
 using WebUygulamaProje1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUygulamaProje1.Controllers
 {
+    [Authorize(Roles = UserRoles.Role_Admin)]
     public class KitapTuruController : Controller
     {
         private readonly IKitapTuruRepository _kitapTuruRepository;
