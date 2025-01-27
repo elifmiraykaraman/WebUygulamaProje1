@@ -17,6 +17,9 @@
         <thead>
           <tr>
               <th>
+                  Resim
+              </th>
+              <th>
                    Id
                  </th>
               <th>
@@ -51,19 +54,23 @@
          <tbody>
             @foreach (var kitap in Model){
              <tr>
-                 <td>@kitap.Id</td>
-                 <td>@kitap.KitapAdi</td>
-                  <td>@kitap.Tanim</td>
-                  <td>@kitap.Yazar</td>
-                  <td>@kitap.Fiyat</td>
-                  <td>@kitap.KitapTuru.Ad</td>
+                  <td align="center valign="middle">
+                      <img src="@kitap.ResimUrl" style="border-radius: 7px; border: 1px solid #bbb9b9";
+                        max-witdth: 145px; max: 275px;"/>
+                  </td>
+                    <td align="center valign="middle">@kitap.Id</td>
+                    <td align="center valign="middle">@kitap.KitapAdi</td>
+                    <td align="center valign="middle">@kitap.Tanim</td>
+                    <td align="center valign="middle">@kitap.Yazar</td>
+                    <td align="center valign="middle">@kitap.Fiyat</td>
+                    <td align="center valign="middle">@kitap.KitapTuru.Ad</td>
 
            @if (User.IsInRole(UserRoles.Role_Admin))
                {
-                 <td>
+                 <td align="center valign="middle">
                  <a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@kitap.Id" type="button" classs="btn btn-primary" style="width:150px">Güncelle</a>
                  </td>
-                 <td>
+                 <td align="center valign="middle">
                         <a asp-controller="Kitap" asp-action="Sil" asp-route-id="@kitap.Id" type="button" classs="btn btn-danger" style="width:150px">Sil</a>
                  </td>
                }
