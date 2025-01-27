@@ -98,6 +98,15 @@ namespace WebUygulamaProje1.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            public int OgrenciNo { get; set; }
+
+            public string? Adres { get; set; }
+
+            public string? Fakulte { get; set; }
+
+            public string? Bolum { get; set; }
         }
 
 
@@ -117,6 +126,12 @@ namespace WebUygulamaProje1.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                user.OgrenciNo = Input.OgrenciNo;
+                user.Adres = Input.Adres;
+                user.Fakulte = Input.Fakulte;
+                user.Bolum = Input.Bolum;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
